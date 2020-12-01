@@ -24,7 +24,7 @@ import javax.persistence.OneToMany;
 public abstract class Compte implements Serializable {
 	@Id
 	
-	private int codeCompte;
+	private Long codeCompte;
 	private Date dateCreation;
 	private double solde;
 	@ManyToOne
@@ -34,7 +34,7 @@ public abstract class Compte implements Serializable {
 	@OneToMany(mappedBy = "compte")
 	private Collection<Operation> operations;
 
-	public Compte(int codeCompte, Date dateCreation, double solde, Client client) {
+	public Compte(Long codeCompte, Date dateCreation, Double solde, Client client) {
 		super();
 		this.codeCompte = codeCompte;
 		this.dateCreation = dateCreation;
@@ -42,11 +42,11 @@ public abstract class Compte implements Serializable {
 		this.client = client;
 	}
 
-	public int getCodeCompte() {
+	public Long getCodeCompte() {
 		return codeCompte;
 	}
 
-	public void setCodeCompte(int codeCompte) {
+	public void setCodeCompte(Long codeCompte) {
 		this.codeCompte = codeCompte;
 	}
 

@@ -14,7 +14,7 @@ public class CompteEpargne extends Compte {
 		super();
 	}
 
-	public CompteEpargne(int codeCompte, Date dateCreation, double solde, Client client, double taux) {
+	public CompteEpargne(Long codeCompte, Date dateCreation, double solde, Client client, double taux) {
 		super(codeCompte, dateCreation, solde, client);
 		this.taux = taux;
 	}
