@@ -1,0 +1,121 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org"
+	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	layout:decorator="template1">
+<head>
+<meta charset="utf-8" />
+<title>Votre Banque</title>
+</head>
+<body>
+
+	<div layout:fragment="content">
+		<div class="row">
+			<div class="col-md-6">
+				<p></p>
+				<div class="card">
+					<div class="card-header">Consultation d'un compte</div>
+					<div class="card-body">
+						<form th:action="@{/consultercompte}" method="get">
+							<div class="form-group">
+								<label>Code Compte :</label> <input type="text"
+									name="codeCompte" class="form-control"
+									placeholder="Code Compte" th:value="${codeCompte}">
+							</div>
+							<button type="submit" class="btn btn-primary">Consulter</button>
+						</form>
+						<div class="text-danger" th:if="${exception}" th:text="${exception.message}"></div>
+					</div>
+				</div>
+				<p></p>
+				<div class="card" th:if="${compte}">
+					<div class="card-header">Information sur le compte</div>
+					<div class="card-body">
+						<label>Client:</label> <label th:text="${compte.client.nomClient}"></label>
+					</div>
+					<div class="card-body">
+						<label>Code:</label> <label th:text="${compte.codeCompte}"></label>
+					</div>
+					<div class="card-body">
+						<label>Sold:</label> <label th:text="${compte.solde}"></label>
+					</div>
+					<div class="card-body">
+						<label>Date Création:</label> <label
+							th:text="${compte.dateCreation}"></label>
+					</div>
+					<div class="card-body">
+						<label>Type:</label> <label th:text="${compte.class.simpleName}"></label>
+					</div>
+					<div class="card-body"
+						th:if="${compte.class.simpleName=='CompteCourant'}">
+						<label>Découvert:</label> <label th:text="${compte.decouvert}"></label>
+					</div>
+					<div class="card-body"
+						th:if="${compte.class.simpleName=='CompteEpargne'}">
+						<label>Taux:</label> <label th:text="${compte.taux}"></label>
+					</div>
+				</div>
+
+			</div>
+
+
+			<div class="col-md-6">
+				<p></p>
+				<div class="card" th:if="${compte}">
+					<div class="card-header">Operation</div>
+					<div class="card-body">
+						<h5 class="card-title">Special title treatment</h5>
+
+						<a href="#" class="btn btn-primary">Go somewhere</a>
+					</div>
+				</div>
+				<p></p>
+				<div class="card" th:if="${compte}">
+					<div class="card-header">Operation</div>
+					<div class="card-body">
+						<h5 class="card-title">Liste des opérations</h5>
+
+						<table class="table table-striped">
+							<thead>
+								<tr>
+									<th scope="col">Num</th><th scope="col">Type</th>
+									<th scope="col">Date</th><th scope="col">Montant</th>
+								</tr>
+							</thead>
+							<tbody>
+								<tr th:each="o:${listOperations}">
+									<td th:text="${o.numeroOperation}"></td>
+									<td th:text="${o.class.simpleName}"></td>
+									<td th:text="${o.dateOperation}"></td>
+									<td th:text="${o.montant}"></td>
+								</tr>
+							</tbody>
+						</table>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+</body>
+</html>
