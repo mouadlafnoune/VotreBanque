@@ -60,6 +60,9 @@ public class BnaqueServiceImpl implements IBanqueService {
 
 	@Override
 	public void virement(Long codeCpte1, Long codeCpte2, double montant) {
+		
+		if(codeCpte1.equals(codeCpte2))
+			throw new RuntimeException("Impossible le virement sur le même compte");
         retirer(codeCpte1, montant);
         verser(codeCpte2, montant);
         
