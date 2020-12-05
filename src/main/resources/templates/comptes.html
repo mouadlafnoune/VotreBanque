@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org"
 	xmlns:layout="http://www.ultraq.net.nz/thymeleaf/layout"
+	xmlns:sec="http://www.thymeleaf.org/thymeleaf-extras-springsecurity4"
 	layout:decorator="template1">
 <head>
 <meta charset="utf-8" />
@@ -61,8 +62,9 @@
 
 			<div class="col-md-6">
 				<p></p>
-				<div class="card" th:if="${compte}">
-					<div class="card-header">Operation</div>
+				
+				<div class="card" th:if="${compte}"  sec:authorize="hasRole('ROLE_ADMIN')">
+					<div class="card-header">Operation sur le compte</div>
 					<div class="card-body">
 						<form th:action="@{/saveOperation}" method="post">
 							<div>
@@ -107,7 +109,7 @@
 				</div>
 				<p></p>
 				<div class="card" th:if="${compte}">
-					<div class="card-header">Operation</div>
+					<div class="card-header">Operations</div>
 					<div class="card-body">
 						<h5 class="card-title">Liste des opérations</h5>
 
