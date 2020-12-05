@@ -72,24 +72,24 @@
 							<div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="typeOperation" checked value="VERS" onchange="document.getElementById('forVirement').style.display='none'"> 
-										<label
-										class="form-check-label" for="exampleRadios1">
+										name="typeOperation" checked value="VERS"
+										onchange="document.getElementById('forVirement').style.display='none'">
+									<label class="form-check-label" for="exampleRadios1">
 										Versement </label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="typeOperation" value="RET" onchange="document.getElementById('forVirement').style.display='none'"> <label
-										class="form-check-label"> Retrait
-									</label>
+										name="typeOperation" value="RET"
+										onchange="document.getElementById('forVirement').style.display='none'">
+									<label class="form-check-label"> Retrait </label>
 								</div>
 								<div class="form-check">
 									<input class="form-check-input" type="radio"
-										name="typeOperation" value="VIR" onchange="document.getElementById('forVirement').style.display='block'"> <label
-										class="form-check-label">
-										Virement </label>
+										name="typeOperation" value="VIR"
+										onchange="document.getElementById('forVirement').style.display='block'">
+									<label class="form-check-label"> Virement </label>
 								</div>
-								<div id="forVirement" class="form-group" >
+								<div id="forVirement" class="form-group">
 									<label>Vers :</label> <input type="text" name="codeCompte2"
 										class="form-control" placeholder="code Compte 2">
 								</div>
@@ -97,8 +97,8 @@
 									<label>Montant :</label> <input type="text" name="montant"
 										class="form-control" placeholder="Montant">
 								</div>
-								<div class="text-danger" th:text="${#httpServletRequest.getParameter('error')}">
-								</div>
+								<div class="text-danger"
+									th:text="${#httpServletRequest.getParameter('error')}"></div>
 							</div>
 							<button type="submit" class="btn btn-primary">Enregistrer</button>
 
@@ -129,7 +129,13 @@
 								</tr>
 							</tbody>
 						</table>
-
+						<nav aria-label="...">
+							<ul class="pagination pagination-sm">
+								<li class="page-item" th:each="p,status:${pages}">
+								<a class="page-link" th:href="@{/consultercompte(codeCompte=${codeCompte},page=${status.index})}" th:text="${status.index}"></a>
+								</li>
+							</ul>
+						</nav>
 					</div>
 				</div>
 			</div>
